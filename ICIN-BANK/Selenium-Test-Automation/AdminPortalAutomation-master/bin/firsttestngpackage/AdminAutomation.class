@@ -1,0 +1,66 @@
+
+
+����   4 �   "firsttestngpackage/AdminAutomation   java/lang/Object  baseUrl Ljava/lang/String; 
+driverPath driver Lorg/openqa/selenium/WebDriver; <init> ()V Code
+   
+ 
+  http://localhost:4201	      D:\geckodriver\geckodriver.exe	      LineNumberTable LocalVariableTable this $Lfirsttestngpackage/AdminAutomation; 
+launchBrowser RuntimeVisibleAnnotations #Lorg/testng/annotations/BeforeTest;	  !    java/lang/System " # out Ljava/io/PrintStream; % Launching Firefox Browser
+ ' )  ( java/io/PrintStream * +  println (Ljava/lang/String;)V - webdriver.gecko.driver
+  / 0 1 
+setProperty 8(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;  3 )org/openqa/selenium/firefox/FirefoxDriver
+ 2 	  6  	
+ 8 :  9 org/openqa/selenium/WebDriver ; + get
+ 8 = > ? manage )()Lorg/openqa/selenium/WebDriver$Options;
+ A C  B %org/openqa/selenium/WebDriver$Options D E timeouts *()Lorg/openqa/selenium/WebDriver$Timeouts;       	 I K  J java/util/concurrent/TimeUnit L M  SECONDS Ljava/util/concurrent/TimeUnit;
+ O Q  P &org/openqa/selenium/WebDriver$Timeouts R S implicitlyWait J(JLjava/util/concurrent/TimeUnit;)Lorg/openqa/selenium/WebDriver$Timeouts; 
+login_Pass Lorg/testng/annotations/Test; priority     Y 
+inputUserName
+ [ ]  \ org/openqa/selenium/By ^ _ name ,(Ljava/lang/String;)Lorg/openqa/selenium/By;
+ 8 a b c 
+findElement :(Lorg/openqa/selenium/By;)Lorg/openqa/selenium/WebElement;  e java/lang/CharSequence g  madhuri
+ i k  j org/openqa/selenium/WebElement l m sendKeys ([Ljava/lang/CharSequence;)V o password q mad12345 s -/html/body/app-root/app-login/div/form/button
+ [ u v _ xpath
+ i x y 
+ click { "http://localhost:4200/user-account
+ 8 } ~  
+getCurrentUrl ()Ljava/lang/String;
+ � �  � java/lang/String � � equalsIgnoreCase (Ljava/lang/String;)Z � Login Successful
+ A � � � window (()Lorg/openqa/selenium/WebDriver$Window;
+ � �  � $org/openqa/selenium/WebDriver$Window � 
+ maximize 	actualUrl 
+expectedUrl 
+StackMapTable useraccount_login_enabling    � */html/body/app-root/div/nav/div/ul/li[1]/a � C/html/body/app-root/app-user-account/table/tbody/tr[1]/td[6]/button � Enabled Login Feature � C/html/body/app-root/app-user-account/table/tbody/tr[2]/td[7]/button � Disabled Login Feature useraccount_features    � @/html/body/app-root/app-user-account/table/tbody/tr/td[9]/select � J/html/body/app-root/app-user-account/table/tbody/tr/td[9]/select/option[1] � @/html/body/app-root/app-user-account/table/tbody/tr/td[9]/button � User Roles Changed checkbookRequests    � */html/body/app-root/div/nav/div/ul/li[2]/a � I/html/body/app-root/app-checkbook-requests/table/tbody/tr[1]/td[7]/button � Request Confirmed 
+authorization    � */html/body/app-root/div/nav/div/ul/li[3]/a � J/html/body/app-root/app-authorize-registration/table/tbody/tr/td[9]/button � 
+Authorized � N/html/body/app-root/app-authorize-registration/table/tbody/tr[2]/td[10]/button �  Not Authorized logout    � */html/body/app-root/div/nav/div/ul/li[4]/a � 
+Logged Out 
+login_Fail    � mad
+ 8 � � � switchTo /()Lorg/openqa/selenium/WebDriver$TargetLocator;
+ � �  � +org/openqa/selenium/WebDriver$TargetLocator � � alert ()Lorg/openqa/selenium/Alert;
+ � �  � org/openqa/selenium/Alert � 
+ accept � Login UnSuccessful Lorg/openqa/selenium/Alert; 
+SourceFile AdminAutomation.java InnerClasses  Options 
+TargetLocator Timeouts Window !                    	   	  
+ 
+     G     *� 
+*� *� �              
+                  
+             �     E� $� &,*� � .W*� 2Y� 4� 5*� 5*� � 7 *� 5� < � @  F� H� N W�                  *  D         E      T 
+     
+  U  VI W   	     �*� 5� < � @  F� H� N W*� 5X� Z� ` � dYfS� h *� 5n� Z� ` � dYpS� h *� 5r� t� ` � w zL*� 5� | M+,� �� 
+� �� &*� 5� < � � � � �       * 
+   "  # 6 $ R & e ' h ( r ) z * � + � ,         �     h . �   r $ �   �   
+ � �  �  �  � 
+     
+  U  VI �    �     J*� 5�� t� ` � w *� 5�� t� ` � w � �� &*� 5�� t� ` � w � �� &�           2  4 & 5 . 7 A 8 I 9        J      � 
+     
+  U  VI �    |     B*� 5�� t� ` � w *� 5�� t� ` � w *� 5�� t� ` � w � �� &�           =  ? & A 9 B A C        B      � 
+     
+  U  VI �    e     /*� 5�� t� ` � w *� 5�� t� ` � w � �� &�           G  I & J . L        /      � 
+     
+  U  VI �    �     J*� 5�� t� ` � w *� 5�� t� ` � w � �� &*� 5�� t� ` � w � �� &�           P  R & S . U A V I X        J      � 
+     
+  U  VI �    N     *� 5�� t� ` � w � ¶ &�           \  ]  _              � 
+     
+  U  VI �   3     �*� 5� < � @  F� H� N W*� 5X� Z� ` � dYfS� h *� 5n� Z� ` � dY�S� h *� 5r� t� ` � w *� 5� � � � L+� � zM*� 5� | N,-� �� 
+� ׶ &*� 5� < � � � � �       2    b  c 6 d R f e g t h z i } j � k � l � m � n    *    �     t 7 � �  } . �   � $ �   �    � �  �  �  �  �    � �   "  A 8 �	 � 8 �	 O 8 �	 � 8 �	
